@@ -8,6 +8,7 @@ import NewsPagedList from '../news/NewsPagedList';
 import { StackScreenProps } from '@react-navigation/stack';
 import NavigationParams from '../../NavigationParams';
 import User from '../../models/User';
+import Lang from '../../utils/Lang';
 
 export default function ProfileScreen({navigation, route}: StackScreenProps<NavigationParams, 'Login'>) {
     const params = route.params;
@@ -19,7 +20,7 @@ export default function ProfileScreen({navigation, route}: StackScreenProps<Navi
     var user = params['user'] as User;
 
     return (
-        <Scaffolding title="V.S.L. Catena - Home">
+        <Scaffolding title={Lang.get('title_profile')}>
             <Text>{user.name}</Text>
         </Scaffolding>
     )

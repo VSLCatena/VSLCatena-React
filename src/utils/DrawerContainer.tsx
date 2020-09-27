@@ -8,6 +8,7 @@ import Color from './Colors';
 import { useNavigation } from '@react-navigation/native';
 import { NavigationProps } from '../NavigationParams';
 import { StackNavigationProp } from '@react-navigation/stack';
+import Lang from './Lang';
 
 interface Props extends DrawerContentComponentProps<any> {
     navigation: StackNavigationProp<any, any>,
@@ -30,10 +31,10 @@ export default function DrawerContainer(props: DrawerContentComponentProps<any>)
                 </View>
             </View>
             <DrawerItem
-                label="Home"
+                label={Lang.get('drawer_home')}
                 onPress={() => { props.navigation.navigate('Home'); }} />
             <DrawerItem
-                label="Nieuws"
+                label={Lang.get('drawer_news')}
                 onPress={() => { props.navigation.navigate('News'); }} />
         </DrawerContentScrollView>
     )
