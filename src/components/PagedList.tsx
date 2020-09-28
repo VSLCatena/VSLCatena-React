@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ListRenderItemInfo, RefreshControl } from 'react-native';
+import { FlatListProps, ListRenderItemInfo, RefreshControl } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
 import { ChunkedListProps, ItemData, FetcherHolder } from '../utils/firebase/ChunkedListFetcher'
@@ -14,12 +14,14 @@ export interface State<T> {
 
 const DEFAULT_LOADING_LIMIT = 10;
 
+export type PagedListProps = ChunkedListProps & Partial<FlatListProps<any>>;
+
 /**
  * A PagedList is an easy way to display chunked data from Firebase Firestore
  */
-abstract class PagedList<T> extends React.Component<Partial<ChunkedListProps>, State<T>> {
+abstract class PagedList<T> extends React.Component<Partial<PagedListProps>, State<T>> {
 
-    constructor(props: ChunkedListProps) {
+    constructor(props: PagedListProps) {
         super(props);
         
         
@@ -46,6 +48,7 @@ abstract class PagedList<T> extends React.Component<Partial<ChunkedListProps>, S
                     <RefreshControl refreshing={this.state.isLoading} onRefresh={this.refresh.bind(this)} />
                 }
                 onEndReached={this.load.bind(this)}
+                {...this.props}
                 />
         )
     }

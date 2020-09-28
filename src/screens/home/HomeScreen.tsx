@@ -6,7 +6,7 @@ import Lang from '../../utils/Lang';
 
 export default function HomeScreen({navigation}: StackScreenProps<any, 'Home'>) {
     return (
-        <Scaffolding title={Lang.get('title_news')}>
+        <Scaffolding title={Lang.get('title_home')}>
             <NewsPagedList path="news" orderedBy="date" />
         </Scaffolding>
     )

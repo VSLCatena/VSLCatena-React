@@ -1,8 +1,9 @@
 import * as React from 'react';
 
 import { useEffect, useState } from "react";
-import { Image, ImageSourcePropType, ImageStyle, StyleProp, ViewStyle } from "react-native";
 import storage from '@react-native-firebase/storage';
+import { Image } from 'react-native-elements';
+import { ImageSourcePropType, ImageStyle, StyleProp } from 'react-native';
 
 export interface Props {
     path: string,
@@ -36,7 +37,7 @@ const FirebaseImage: React.FC<Props> = (props) => {
 
     // We switch between 3 sources, if the image can be loaded we load that, otherwise we
     // load a placeholder, otherwise we load an empty object
-    return (<Image defaultSource={placeholder} source={imageSource ?? props?.placeholder ?? placeholder} style={props.style} />);
+    return (<Image source={imageSource ?? props?.placeholder ?? placeholder} style={props.style} />);
 };
 
 export default FirebaseImage;

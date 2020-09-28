@@ -1,14 +1,12 @@
 import * as React from 'react';
 import { DrawerContentComponentProps, DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
-import { Image, ScrollViewProps, Text, View } from "react-native";
+import { Image, ScrollViewProps, View } from "react-native";
 import { UserProvider } from './UserProvider';
 import User from '../models/User';
 import FirebaseImage from '../components/FirebaseImage';
-import Color from './Colors';
-import { useNavigation } from '@react-navigation/native';
-import { NavigationProps } from '../NavigationParams';
 import { StackNavigationProp } from '@react-navigation/stack';
 import Lang from './Lang';
+import { Text, ThemeContext } from 'react-native-elements';
 
 interface Props extends DrawerContentComponentProps<any> {
     navigation: StackNavigationProp<any, any>,
@@ -36,6 +34,9 @@ export default function DrawerContainer(props: DrawerContentComponentProps<any>)
             <DrawerItem
                 label={Lang.get('drawer_news')}
                 onPress={() => { props.navigation.navigate('News'); }} />
+            <DrawerItem
+                label="Test"
+                onPress={() => { }} />
         </DrawerContentScrollView>
     )
 }

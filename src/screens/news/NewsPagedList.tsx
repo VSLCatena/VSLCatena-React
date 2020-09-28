@@ -1,8 +1,9 @@
 import { useNavigation } from '@react-navigation/native';
 import * as React from 'react';
-import { ListRenderItemInfo, Text, View } from "react-native";
+import { View } from "react-native";
+import { Card, Text } from 'react-native-elements';
 import FirebaseImage from '../../components/FirebaseImage';
-import PagedList from "../../components/PagedList";
+import PagedList, {PagedListProps} from "../../components/PagedList";
 import News from "../../models/News";
 import User from '../../models/User';
 import { NavigationProps } from '../../NavigationParams';
@@ -11,7 +12,7 @@ import { DocumentSnapshot } from '../../utils/TypeAliases';
 
 export default class NewsPagedList extends PagedList<News> {
 
-    constructor(props: ChunkedListProps) {
+    constructor(props: PagedListProps) {
         super(props);
     }
     
@@ -40,11 +41,17 @@ const NewsElement: React.FC<News> = (props) => {
     });
 
     return (
-        <View style={{flex: 1, flexDirection: 'column', padding: 10}}>
-            <FirebaseImage path={"users/"+(user?.id ?? "")+".jpg"} style={{ width: 50, height: 50 }} />
-            <Text onPress={() => {navigation.navigate('Profile', {user: user})}}>{user?.name}</Text>
-            <Text>{props.title}</Text>
+        <Card>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <FirebaseImage path={"users/"+(user?.id ?? "")+".jpg"} style={{ width: 50, height: 50, }} />
+                <View style={{flexDirection: 'column', padding: 8 }}>
+                    <Text style={{ fontSize: 20 }}>{props.title}</Text>
+                    <Text onPress={() => {navigation.navigate('Profile', {user: user})}}>{user?.name}</Text>
+                    <Text>{props.date.toDate().toISOString()}</Text>
+                </View>
+            </View>
+            <Card.Divider />
             <Text>{props.content}</Text>
-        </View>
+        </Card>
     );
 };

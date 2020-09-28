@@ -3,9 +3,9 @@ import * as React from 'react';
 const useState = React.useState;
 import { Alert, Button, Image, StyleSheet, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import LabeledTextInput from '../../components/LabeledTextInput'
 import NavigationParams from '../../NavigationParams';
 import auth from '@react-native-firebase/auth';
+import { Input } from 'react-native-elements';
 
 export default function LoginScreen({navigation}: StackScreenProps<NavigationParams, 'Login'>) {
     const [username, setUsername] = useState('');
@@ -17,14 +17,14 @@ export default function LoginScreen({navigation}: StackScreenProps<NavigationPar
                     source={require('../../assets/images/logo.png')}
                     style={styles.image} />
             
-                <LabeledTextInput
+                <Input
                     style={styles.inputs}
                     label="Username"
                     placeholder="Type username here"
                     onChangeText={text => setUsername(text)}
                     defaultValue={username}
                     />
-                <LabeledTextInput
+                <Input
                     style={styles.inputs}
                     label="Password"
                     placeholder="Type password here"
