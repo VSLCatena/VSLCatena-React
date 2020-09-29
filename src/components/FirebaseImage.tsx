@@ -2,8 +2,7 @@ import * as React from 'react';
 
 import { useEffect, useState } from "react";
 import storage from '@react-native-firebase/storage';
-import { Image } from 'react-native-elements';
-import { ImageSourcePropType, ImageStyle, StyleProp } from 'react-native';
+import { Image, ImageSourcePropType, ImageStyle, StyleProp } from 'react-native';
 
 export interface Props {
     path: string,

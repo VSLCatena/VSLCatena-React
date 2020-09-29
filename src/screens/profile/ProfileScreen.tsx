@@ -6,7 +6,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 import NavigationParams from '../../NavigationParams';
 import User from '../../models/User';
 import Lang from '../../utils/Lang';
-import { Text } from 'react-native-elements';
+import { Text } from 'react-native-paper';
 
 export default function ProfileScreen({navigation, route}: StackScreenProps<NavigationParams, 'Login'>) {
     const params = route.params;

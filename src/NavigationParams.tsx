@@ -6,6 +6,7 @@ type NavigationParams = {
     Home: undefined;
     Profile: { user: User|undefined };
     News: undefined;
+    Settings: undefined;
     Feed: { sort: 'latest' | 'top' } | undefined;
 };
 

@@ -4,16 +4,20 @@ const translations = {
         'en': 'V.S.L. Catena',
     },
     'title_home': {
-        'nl': 'V.S.L. Catena - Home',
-        'en': 'V.S.L. Catena- Home',
+        'nl': 'Home',
+        'en': 'Home',
     },
     'title_news': {
-        'nl': 'V.S.L. Catena - Nieuws',
-        'en': 'V.S.L. Catena - News',
+        'nl': 'Nieuws',
+        'en': 'News',
     },
     'title_profile': {
-        'nl': 'V.S.L. Catena - Profiel',
-        'en': 'V.S.L. Catena - Profile',
+        'nl': 'Profiel van %s',
+        'en': 'Profile of %s',
+    },
+    'title_settings': {
+        'nl': 'Instellingen',
+        'en': 'Settings',
     },
     'drawer_home': {
         'nl': 'Home',
@@ -22,7 +26,19 @@ const translations = {
     'drawer_news': {
         'nl': 'Nieuws',
         'en': 'News',
-    }
+    },
+    'drawer_settings': {
+        'nl': 'Instellingen',
+        'en': 'Settings',
+    },
+    'login_username': {
+        'nl': 'Gebruikersnaam',
+        'en': 'Username',
+    },
+    'login_password': {
+        'nl': 'Wachtwoord',
+        'en': 'Password',
+    },
 };
 
 class LangClass {
