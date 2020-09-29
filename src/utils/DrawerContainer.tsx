@@ -6,16 +6,17 @@ import FirebaseImage from '../components/FirebaseImage';
 import { StackNavigationProp } from '@react-navigation/stack';
 import Lang from './Lang';
 import { DarkTheme, DefaultTheme } from '@react-navigation/native';
-import { DarkThemeContext } from './contexts/DarkThemeContext';
-import { UserContext } from './contexts/UserContext';
 import { Text } from 'react-native-paper';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../redux/Combiner';
 
 interface Props extends DrawerContentComponentProps<any> {
     navigation: StackNavigationProp<any, any>,
 }
 
 export default function DrawerContainer(props: DrawerContentComponentProps<any>) {
-    const user = React.useContext(UserContext);
+    const dispatcher = useDispatch();
+    const currentUser = useSelector((state: RootState) => state.user).currentUser;
 
     return (
         <DrawerContentScrollView {...props}>
@@ -23,10 +24,10 @@ export default function DrawerContainer(props: DrawerContentComponentProps<any>)
                 <Image source={require('../assets/images/logo.png')} />
             </View>
             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', padding: 16, paddingTop: 0,}}>
-                <FirebaseImage path={"users/"+user?.currentUser?.id+".jpg"} style={{ width: 50, height: 50, borderColor: 'black', borderWidth: 1, borderRadius: 25 }} />
+                <FirebaseImage path={"users/"+currentUser?.id+".jpg"} style={{ width: 50, height: 50, borderColor: 'black', borderWidth: 1, borderRadius: 25 }} />
                 <View style={{ marginStart: 10, flex: 1}}>
-                    <Text style={{fontWeight: 'bold', fontSize: 16,}}>{ user?.currentUser?.name }</Text>
-                    <Text>{ user?.currentUser?.memberNumber}</Text>
+                    <Text style={{fontWeight: 'bold', fontSize: 16,}}>{ currentUser?.name }</Text>
+                    <Text>{ currentUser?.memberNumber}</Text>
                 </View>
             </View>
             <DrawerItem
