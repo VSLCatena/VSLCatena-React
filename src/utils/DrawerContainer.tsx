@@ -4,11 +4,11 @@ import { Image, ScrollViewProps, View } from "react-native";
 import User from '../models/User';
 import FirebaseImage from '../components/FirebaseImage';
 import { StackNavigationProp } from '@react-navigation/stack';
-import Lang from './Lang';
 import { DarkTheme, DefaultTheme } from '@react-navigation/native';
 import { Text } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux/Combiner';
+import LocaleContext from './language/LanguageContext';
 
 interface Props extends DrawerContentComponentProps<any> {
     navigation: StackNavigationProp<any, any>,
@@ -17,6 +17,7 @@ interface Props extends DrawerContentComponentProps<any> {
 export default function DrawerContainer(props: DrawerContentComponentProps<any>) {
     const dispatcher = useDispatch();
     const currentUser = useSelector((state: RootState) => state.user).currentUser;
+    const {t} = React.useContext(LocaleContext);
 
     return (
         <DrawerContentScrollView {...props}>
@@ -31,13 +32,13 @@ export default function DrawerContainer(props: DrawerContentComponentProps<any>)
                 </View>
             </View>
             <DrawerItem
-                label={Lang.get('drawer_home')}
+                label={t('drawer_home')}
                 onPress={() => { props.navigation.navigate('Home'); }} />
             <DrawerItem
-                label={Lang.get('drawer_news')}
+                label={t('drawer_news')}
                 onPress={() => { props.navigation.navigate('News'); }} />
             <DrawerItem
-                label={Lang.get('drawer_settings')}
+                label={t('drawer_settings')}
                 onPress={() => { props.navigation.navigate('Settings'); }} />
         </DrawerContentScrollView>
     )

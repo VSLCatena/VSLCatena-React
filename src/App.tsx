@@ -3,7 +3,6 @@ import React from 'react';
 import LoginScreen from './screens/login/LoginScreen';
 import HomeScreen from './screens/home/HomeScreen';
 import auth from '@react-native-firebase/auth';
-import firestore from '@react-native-firebase/firestore';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import DrawerContainer from './utils/DrawerContainer';
 import ProfileScreen from './screens/profile/ProfileScreen';
@@ -14,16 +13,16 @@ import { Provider as StoreProvider, useSelector } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import { rootReducer, RootState } from './redux/Combiner';
 import thunk from 'redux-thunk';
-import AsyncStorage from '@react-native-community/async-storage';
-import { setDarkMode } from './redux/darkmode/Actions';
-import { updateUser } from './redux/user/Actions';
-import { DARK_MODE_STORAGE_KEY } from './redux/darkmode/Reducers'
-import { DocumentSnapshot } from './utils/TypeAliases';
-import User from './models/User';
+import { setupDarkModeStore } from './redux/darkmode/Reducers';
+import { createStackNavigator } from '@react-navigation/stack';
+import { setupUserStore } from './redux/user/Reducers';
+import LanguageProvider from './utils/language/LanguageProvider';
 
 
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
+setupDarkModeStore(store);
+setupUserStore(store);
 
 const App = () => {
   return (
@@ -41,43 +40,24 @@ const AppNav = () => {
   }
 
   const Drawer = createDrawerNavigator();
+  const Stack = createStackNavigator();
   const darkMode = useSelector((state: RootState) => state.darkMode);
 
   return (
-    <NavigationContainer theme={darkMode.useDarkMode ? DarkTheme : DefaultTheme}>
+    <LanguageProvider>
       <PaperProvider theme={darkMode.useDarkMode ? DarkPaperTheme : DefaultPaperTheme}>
-        <Drawer.Navigator drawerContent={props => <DrawerContainer {...props} />} initialRouteName={initialRoute}>
-          <Drawer.Screen name="Login" component={LoginScreen} />
-          <Drawer.Screen name="Home" component={HomeScreen} />
-          <Drawer.Screen name="Profile" component={ProfileScreen} />
-          <Drawer.Screen name="News" component={NewsScreen} />
-          <Drawer.Screen name="Settings" component={SettingsScreen} />
-        </Drawer.Navigator>
-    </PaperProvider>
-  </NavigationContainer>
+        <NavigationContainer theme={darkMode.useDarkMode ? DarkTheme : DefaultTheme}>
+          <Drawer.Navigator drawerType="front" drawerContent={props => <DrawerContainer {...props} />} initialRouteName={initialRoute}>
+            <Drawer.Screen name="Login" component={LoginScreen} />
+            <Drawer.Screen name="Home" component={HomeScreen} />
+            <Drawer.Screen name="Profile" component={ProfileScreen} />
+            <Drawer.Screen name="News" component={NewsScreen} />
+            <Drawer.Screen name="Settings" component={SettingsScreen} />
+          </Drawer.Navigator>
+        </NavigationContainer>
+      </PaperProvider>
+    </LanguageProvider>
   )
 }
-
-// Dark theme
-AsyncStorage.getItem(DARK_MODE_STORAGE_KEY).then((isDarkTheme) => {
-  if (isDarkTheme == null) return;
-  store.dispatch(setDarkMode(isDarkTheme === 'true'));
-});
-
-
-
-// Update user
-auth().onUserChanged((user) => {
-  if (user == null) {
-    store.dispatch(updateUser(null))
-    return;
-  }
-
-  firestore().doc("users/"+(user.uid)).get()
-      .then((snapshot: DocumentSnapshot) => {
-        store.dispatch(updateUser(User.fromSnapshot(snapshot)));
-      });
-});
-
 
 export default App;

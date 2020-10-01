@@ -1,4 +1,4 @@
-const translations = {
+export const translations = {
     'title': {
         'nl': 'V.S.L. Catena',
         'en': 'V.S.L. Catena',
@@ -39,15 +39,26 @@ const translations = {
         'nl': 'Wachtwoord',
         'en': 'Password',
     },
+    'settings_dark_mode': {
+        'nl': 'Dark mode',
+        'en': 'Dark mode',
+    },
+    'settings_language': {
+        'nl': 'Taal',
+        'en': 'Language',
+    },
+    'settings_language_nl': {
+        'nl': 'NL',
+        'en': 'NL',
+    },
+    'settings_language_en': {
+        'nl': 'EN',
+        'en': 'EN',
+    }
 };
 
-class LangClass {
-    private currentLang: "nl"|"en" = "nl";
-    get(key: keyof typeof translations): string {
-        return translations[key][this.currentLang];
-    }
-}
 
-const Lang = new LangClass();
 
-export default Lang;
+export type Translations = keyof typeof translations;
+
+export type SupportedLangs = 'nl' | 'en';

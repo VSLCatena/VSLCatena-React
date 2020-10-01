@@ -1,6 +1,7 @@
 import { DarkModeState } from "./Types";
-import { DarkModeActionTypes, SET_DARK_MODE, TOGGLE_DARK_MODE } from './Actions';
+import { DarkModeActionTypes, setDarkMode, SET_DARK_MODE, TOGGLE_DARK_MODE } from './Actions';
 import AsyncStorage from "@react-native-community/async-storage";
+import { Store } from 'redux';
 
 const initialState: DarkModeState = {
     useDarkMode: true,
@@ -29,4 +30,12 @@ export function darkModeReducer(
         ...state,
         useDarkMode: newDarkMode,
     };
+}
+
+export function setupDarkModeStore(store: Store) {
+    // Dark theme
+    AsyncStorage.getItem(DARK_MODE_STORAGE_KEY).then((isDarkTheme) => {
+        if (isDarkTheme == null) return;
+        store.dispatch(setDarkMode(isDarkTheme === 'true'));
+    });
 }

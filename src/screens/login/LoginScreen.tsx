@@ -5,10 +5,11 @@ import { Alert, Button, Image, StyleSheet, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import NavigationParams from '../../NavigationParams';
 import auth from '@react-native-firebase/auth';
-import Lang from '../../utils/Lang';
 import { TextInput } from 'react-native-paper';
+import LocaleContext from '../../utils/language/LanguageContext';
 
 export default function LoginScreen() {
+    const {t} = React.useContext(LocaleContext);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -20,16 +21,16 @@ export default function LoginScreen() {
                     style={styles.image} />
             
                 <TextInput
-                    label={Lang.get('login_username')}
+                    label={t('login_username')}
                     mode="flat"
-                    placeholder={Lang.get('login_username')}
+                    placeholder={t('login_username')}
                     onChangeText={text => setUsername(text)}
                     defaultValue={username}
                     />
                 <TextInput
-                    label={Lang.get('login_password')}
+                    label={t('login_password')}
                     mode="flat"
-                    placeholder={Lang.get('login_password')}
+                    placeholder={t('login_password')}
                     onChangeText={text => setPassword(text)}
                     defaultValue={password} 
                     secureTextEntry={true}
