@@ -16,7 +16,7 @@ const Scaffolding: React.FC<Props> = (props) => {
                 <Appbar.Action icon='menu' onPress={() => { navigation.dispatch(DrawerActions.openDrawer()) }} />
                 <Appbar.Content title={props.title} />
             </Appbar.Header>
-            <View style={{flexGrow: 1,}}>
+            <View style={{flex: 1, flexGrow: 1,}}>
                 {props.children}
             </View>
         </View>

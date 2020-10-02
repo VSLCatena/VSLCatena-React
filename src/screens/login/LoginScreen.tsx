@@ -1,17 +1,26 @@
-import { StackNavigationProp, StackScreenProps } from '@react-navigation/stack';
 import * as React from 'react';
 const useState = React.useState;
-import { Alert, Button, Image, StyleSheet, View } from 'react-native';
+import { Button, Image, StyleSheet, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import NavigationParams from '../../NavigationParams';
 import auth from '@react-native-firebase/auth';
 import { TextInput } from 'react-native-paper';
 import LocaleContext from '../../utils/language/LanguageContext';
+import { RootState } from '../../redux/Combiner';
+import { useSelector } from 'react-redux';
+import { NavigationAction, useNavigation } from '@react-navigation/native';
 
 export default function LoginScreen() {
     const {t} = React.useContext(LocaleContext);
+    const currentUser = useSelector((state: RootState) => state.user).currentUser;
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
+    if (currentUser != null) {
+        useNavigation().reset({
+            index: 1,
+            routes: [ { name: 'Home' } ]
+        })
+    }
 
     return (
         <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
@@ -63,14 +72,7 @@ function login(
             return response;
         })
         .then(response => response.json())
-        .then(response => auth().signInWithCustomToken(response['token']))
-        // .then(response => {
-        //     navigation.replace('Home');
-        // })
-        // .catch((reason) => {
-        //     Alert.alert('Something went wrong: ' + reason);
-        //     console.error(reason);
-        // })
+        .then(response => auth().signInWithCustomToken(response['token']));
 }
 
 const styles = StyleSheet.create({

@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { FlatListProps, ListRenderItemInfo, RefreshControl } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
+import { FlatList, FlatListProps, ListRenderItemInfo, RefreshControl } from 'react-native';
 import {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
-import { ChunkedListProps, ItemData, FetcherHolder } from '../utils/firebase/ChunkedListFetcher'
+import { ChunkedListProps, ItemData, FetcherHolder } from '../utils/firebase/ChunkedListFetcher';
 
 
 
@@ -50,7 +49,7 @@ abstract class PagedList<T> extends React.Component<Partial<PagedListProps>, Sta
                 onEndReached={this.load.bind(this)}
                 {...this.props}
                 />
-        )
+        );
     }
 
     private async refresh() {

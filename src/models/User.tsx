@@ -6,6 +6,7 @@ export default class User {
         public id: string,
         public name: string,
         public memberNumber: string,
+        public role: number,
         public committees?: Committee[],
     ) {
     }
@@ -15,6 +16,7 @@ export default class User {
             snapshot.id,
             snapshot.get('name'),
             snapshot.get('memberNumber'),
+            snapshot.get('role') ?? 0,
             [] // TODO
         )
     }

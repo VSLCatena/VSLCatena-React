@@ -26,15 +26,20 @@ export function userReducer(
 }
 
 export function setupUserStore(store: Store) {
+    var unsubscriber: (() => void) | null = null;
+
     // Update user
     auth().onUserChanged((user) => {
+        if (unsubscriber != null)
+            unsubscriber();
+
         if (user == null) {
             store.dispatch(updateUser(null))
             return;
         }
 
-        firestore().doc("users/"+(user.uid)).get()
-            .then((snapshot: DocumentSnapshot) => {
+        unsubscriber = firestore().doc('users/'+(user.uid))
+            .onSnapshot((snapshot: DocumentSnapshot) => {
                 store.dispatch(updateUser(User.fromSnapshot(snapshot)));
             });
     });

@@ -17,6 +17,7 @@ import { setupDarkModeStore } from './redux/darkmode/Reducers';
 import { createStackNavigator } from '@react-navigation/stack';
 import { setupUserStore } from './redux/user/Reducers';
 import LanguageProvider from './utils/language/LanguageProvider';
+import EditNewsScreen from './screens/news/EditNewsScreen';
 
 
 
@@ -52,6 +53,7 @@ const AppNav = () => {
             <Drawer.Screen name="Home" component={HomeScreen} />
             <Drawer.Screen name="Profile" component={ProfileScreen} />
             <Drawer.Screen name="News" component={NewsScreen} />
+            <Drawer.Screen name="EditNews" component={EditNewsScreen} />
             <Drawer.Screen name="Settings" component={SettingsScreen} />
           </Drawer.Navigator>
         </NavigationContainer>

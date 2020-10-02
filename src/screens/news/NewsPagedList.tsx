@@ -20,10 +20,6 @@ export default class NewsPagedList extends PagedList<News> {
         return <NewsElement {...item} />;
     }
 
-    render() {
-        return <View style={{padding: 4}}>{super.render()}</View>
-    }
-
     getInfo(): ChunkedListProps {
         return {
             path: 'news',
@@ -42,10 +38,10 @@ const NewsElement: React.FC<News> = (props) => {
     
 
     return (
-        <Card style={{ margin: 4 }}>
+        <Card style={{ marginTop: 8, marginBottom: 8, marginStart: 16, marginEnd: 16, }}>
             <Card.Content style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <FirebaseImage path={"users/"+(user?.id ?? "")+".jpg"} style={{ width: 50, height: 50, }} />
-                <View style={{flexDirection: 'column', padding: 8 }}>
+                 <View style={{flexDirection: 'column', padding: 8 }}>
                     <Text style={{ fontSize: 16 }}>{props.title}</Text>
                     <Text onPress={() => {navigation.navigate('Profile', {user: user})}}>{user?.name}</Text>
                     <Text>{props.date.toDate().toISOString()}</Text>
