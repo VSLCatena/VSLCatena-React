@@ -18,6 +18,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { setupUserStore } from './redux/user/Reducers';
 import LanguageProvider from './utils/language/LanguageProvider';
 import EditNewsScreen from './screens/news/EditNewsScreen';
+import PromoScreen from './screens/promo/PromoScreen';
+import EditPromoScreen from './screens/promo/EditPromoScreen';
 
 
 
@@ -54,6 +56,8 @@ const AppNav = () => {
             <Drawer.Screen name="Profile" component={ProfileScreen} />
             <Drawer.Screen name="News" component={NewsScreen} />
             <Drawer.Screen name="EditNews" component={EditNewsScreen} />
+            <Drawer.Screen name="Promo" component={PromoScreen} />
+            <Drawer.Screen name="EditPromo" component={EditPromoScreen}/>
             <Drawer.Screen name="Settings" component={SettingsScreen} />
           </Drawer.Navigator>
         </NavigationContainer>

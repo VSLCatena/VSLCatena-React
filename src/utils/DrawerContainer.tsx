@@ -38,6 +38,9 @@ export default function DrawerContainer(props: DrawerContentComponentProps<any>)
                 label={t('drawer_news')}
                 onPress={() => { props.navigation.navigate('News'); }} />
             <DrawerItem
+                label={t('drawer_promo')}
+                onPress={() => { props.navigation.navigate('Promo'); }} />
+            <DrawerItem
                 label={t('drawer_settings')}
                 onPress={() => { props.navigation.navigate('Settings'); }} />
         </DrawerContentScrollView>

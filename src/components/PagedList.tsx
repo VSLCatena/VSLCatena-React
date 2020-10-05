@@ -11,8 +11,6 @@ export interface State<T> {
     fetcher: FetcherHolder<T>,
 }
 
-const DEFAULT_LOADING_LIMIT = 10;
-
 export type PagedListProps = ChunkedListProps & Partial<FlatListProps<any>>;
 
 /**

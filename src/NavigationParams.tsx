@@ -7,6 +7,8 @@ type NavigationParams = {
     Profile: { user: User|undefined };
     News: undefined;
     EditNews: { newsId: string|undefined },
+    Promo: undefined,
+    EditPromo: { promoId: string|undefined },
     Settings: undefined;
     Feed: { sort: 'latest' | 'top' } | undefined;
 };

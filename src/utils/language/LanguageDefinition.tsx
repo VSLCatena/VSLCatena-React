@@ -11,6 +11,10 @@ export const translations = {
         'nl': 'Nieuws',
         'en': 'News',
     },
+    'title_promo': {
+        'nl': 'Promo',
+        'en': 'Promo',
+    },
     'title_profile': {
         'nl': 'Profiel van %s',
         'en': 'Profile of %s',
@@ -26,6 +30,10 @@ export const translations = {
     'drawer_news': {
         'nl': 'Nieuws',
         'en': 'News',
+    },
+    'drawer_promo': {
+        'nl': 'Promo',
+        'en': 'Promo',
     },
     'drawer_settings': {
         'nl': 'Instellingen',

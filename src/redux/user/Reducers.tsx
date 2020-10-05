@@ -8,6 +8,7 @@ import User from "../../models/User";
 
 const initialState: UserState = {
     currentUser: null,
+    userRole: 0,
 }
 
 export function userReducer(
@@ -19,6 +20,7 @@ export function userReducer(
             return {
                 ...state,
                 currentUser: action.user,
+                userRole: action.user?.role ?? 0,
             }
         default:
             return state;
@@ -41,6 +43,6 @@ export function setupUserStore(store: Store) {
         unsubscriber = firestore().doc('users/'+(user.uid))
             .onSnapshot((snapshot: DocumentSnapshot) => {
                 store.dispatch(updateUser(User.fromSnapshot(snapshot)));
-            });
+            }); 
     });
 }

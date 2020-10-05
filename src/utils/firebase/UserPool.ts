@@ -16,6 +16,12 @@ class UserPoolFetcher extends FetchPool<User> {
     convert(snapshot: DocumentSnapshot): User {
         return User.fromSnapshot(snapshot);
     }
+
+    fetchUser(userId?: any): Promise<User>|null {
+        if (userId == null) return null;
+
+        return this.fetch('users/'+userId);
+    }
 }
 
 export default UserPoolFetcher.getInstance();

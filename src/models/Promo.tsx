@@ -3,7 +3,7 @@ import { DocumentSnapshot } from "../utils/TypeAliases";
 import UserPool from '../utils/firebase/UserPool'
 import User from "./User";
 
-export default class News {
+export default class Promo {
     constructor(
         public title: string,
         public content: string,
@@ -15,10 +15,10 @@ export default class News {
     }
 
     static fromSnapshot(snapshot: DocumentSnapshot) {
-        return new News(
+        return new Promo(
             snapshot.get('title'),
             snapshot.get('content'),
-            UserPool.fetchUser(snapshot.get('user'))!!,
+            UserPool.fetch('users/'+snapshot.get('user')),
             snapshot.get('date'),
             UserPool.fetchUser(snapshot.get('userLastEdited')),
             snapshot.get('dateLastEdited'),
