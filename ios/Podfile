@@ -12,6 +12,8 @@ target 'VSLCatenaReact' do
 
   pod 'react-native-appearance', :path => '../node_modules/react-native-appearance'
 
+  pod 'react-native-nfc-manager', :path => '../node_modules/react-native-nfc-manager'
+
   target 'VSLCatenaReactTests' do
     inherit! :complete
     # Pods for testing

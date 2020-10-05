@@ -20,10 +20,9 @@ const FirebaseImage: React.FC<Props> = (props) => {
             .ref(props.path)
             .getDownloadURL()
             .then((url) => {
-                setImage(url);
-            }).catch((e) => {
-                console.log("Couldn't load the following storage path: " + props.path);
-            });
+                if (url != null)
+                    setImage(url);
+            }).catch((e) => {});
     });
 
     var imageSource: Object|null = null;

@@ -20,6 +20,9 @@ import LanguageProvider from './utils/language/LanguageProvider';
 import EditNewsScreen from './screens/news/EditNewsScreen';
 import PromoScreen from './screens/promo/PromoScreen';
 import EditPromoScreen from './screens/promo/EditPromoScreen';
+import NfcManager, {NfcEvents, TagEvent} from 'react-native-nfc-manager';
+import { Alert } from 'react-native';
+import NfcHandler from './utils/NfcHandler';
 
 
 
@@ -27,12 +30,25 @@ const store = createStore(rootReducer, applyMiddleware(thunk));
 setupDarkModeStore(store);
 setupUserStore(store);
 
-const App = () => {
-  return (
-    <StoreProvider store={store}>
-      <AppNav />
-    </StoreProvider>
-  );
+class App extends React.Component {
+  private nfcHandler: NfcHandler = new NfcHandler();
+
+
+  componentDidMount() {
+    this.nfcHandler.mount();
+  }
+
+  componentWillUnmount() {
+    this.nfcHandler.unmount();
+  }
+
+  render() {
+    return (
+      <StoreProvider store={store}>
+        <AppNav />
+      </StoreProvider>
+    );
+  }
 }
 
 const AppNav = () => {
