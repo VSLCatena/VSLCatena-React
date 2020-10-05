@@ -20,13 +20,13 @@ function postPromo(user: User, title: string, content: string) {
 }
 
 
-export default function EditPromoScreen({navigation}: StackScreenProps<NavigationParams, 'EditPromo'>) {
+export default function EditPromoScreen({navigation}: StackScreenProps<NavigationParams, 'EditPromo'>): React.ReactElement {
     const {t} = React.useContext(LocaleContext);
     const user = useSelector((state: RootState) => state.user).currentUser;
 
     if (user == null) {
         navigation.pop();
-        return;
+        return <></>;
     }
 
     const [ title, setTitle ] = React.useState('');

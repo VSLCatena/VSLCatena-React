@@ -20,13 +20,13 @@ function postNews(user: User, title: string, content: string) {
 }
 
 
-export default function EditNewsScreen({navigation}: StackScreenProps<NavigationParams, 'EditNews'>) {
+export default function EditNewsScreen({navigation}: StackScreenProps<NavigationParams, 'EditNews'>): React.ReactElement {
     const {t} = React.useContext(LocaleContext);
     const user = useSelector((state: RootState) => state.user).currentUser;
 
     if (user == null) {
         navigation.pop();
-        return;
+        return <></>;
     }
 
     const [ title, setTitle ] = React.useState('');
