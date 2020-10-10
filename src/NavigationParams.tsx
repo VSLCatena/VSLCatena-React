@@ -2,15 +2,17 @@ import { StackScreenProps } from "@react-navigation/stack";
 import User from "./models/User";
 
 type NavigationParams = {
-    Login: undefined;
-    Home: undefined;
-    Profile: { user: User|undefined };
-    News: undefined;
+    Login: undefined,
+    Home: undefined,
+    Profile: { user: User|undefined },
+    News: undefined,
     EditNews: { newsId: string|undefined },
     Promo: undefined,
     EditPromo: { promoId: string|undefined },
-    Settings: undefined;
-    Feed: { sort: 'latest' | 'top' } | undefined;
+    Activities: undefined,
+    EditActivity: { activityId: string|undefined },
+    Topics: undefined,
+    Settings: undefined,
 };
 
 export default NavigationParams;

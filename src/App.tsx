@@ -14,21 +14,23 @@ import { applyMiddleware, createStore } from 'redux';
 import { rootReducer, RootState } from './redux/Combiner';
 import thunk from 'redux-thunk';
 import { setupDarkModeStore } from './redux/darkmode/Reducers';
-import { createStackNavigator } from '@react-navigation/stack';
 import { setupUserStore } from './redux/user/Reducers';
 import LanguageProvider from './utils/language/LanguageProvider';
 import EditNewsScreen from './screens/news/EditNewsScreen';
 import PromoScreen from './screens/promo/PromoScreen';
 import EditPromoScreen from './screens/promo/EditPromoScreen';
-import NfcManager, {NfcEvents, TagEvent} from 'react-native-nfc-manager';
-import { Alert } from 'react-native';
 import NfcHandler from './utils/NfcHandler';
+import { setupDataStore } from './redux/data/Reducers';
+import ActivitiesScreen from './screens/activities/ActivitiesScreen';
+import TopicsScreen from './screens/activities/TopicsScreen';
+import EditActivityScreen from './screens/activities/EditActivityScreen';
 
 
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 setupDarkModeStore(store);
 setupUserStore(store);
+setupDataStore(store);
 
 class App extends React.Component {
   private nfcHandler: NfcHandler = new NfcHandler();
@@ -59,7 +61,6 @@ const AppNav = () => {
   }
 
   const Drawer = createDrawerNavigator();
-  const Stack = createStackNavigator();
   const darkMode = useSelector((state: RootState) => state.darkMode);
 
   return (
@@ -74,6 +75,9 @@ const AppNav = () => {
             <Drawer.Screen name="EditNews" component={EditNewsScreen} />
             <Drawer.Screen name="Promo" component={PromoScreen} />
             <Drawer.Screen name="EditPromo" component={EditPromoScreen}/>
+            <Drawer.Screen name="Activities" component={ActivitiesScreen} />
+            <Drawer.Screen name="EditActivity" component={EditActivityScreen} />
+            <Drawer.Screen name="Topics" component={TopicsScreen} />
             <Drawer.Screen name="Settings" component={SettingsScreen} />
           </Drawer.Navigator>
         </NavigationContainer>

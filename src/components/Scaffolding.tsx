@@ -6,6 +6,7 @@ import { Appbar } from 'react-native-paper';
 
 export interface Props {
     title?: string,
+    icons?: React.ReactElement[],
 }
 const Scaffolding: React.FC<Props> = (props) => {
     const navigation = useNavigation();
@@ -15,6 +16,7 @@ const Scaffolding: React.FC<Props> = (props) => {
             <Appbar.Header>
                 <Appbar.Action icon='menu' onPress={() => { navigation.dispatch(DrawerActions.openDrawer()) }} />
                 <Appbar.Content title={props.title} />
+                {props.icons}
             </Appbar.Header>
             <View style={{flex: 1, flexGrow: 1,}}>
                 {props.children}

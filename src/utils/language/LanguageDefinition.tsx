@@ -23,6 +23,14 @@ export const translations = {
         'nl': 'Instellingen',
         'en': 'Settings',
     },
+    'title_activities': {
+        'nl': 'Activiteiten',
+        'en': 'Activities',
+    },
+    'title_topics': {
+        'nl': 'Abonneer op onderwerpen',
+        'en': 'Subscribe to topics',
+    },
     'drawer_home': {
         'nl': 'Home',
         'en': 'Home',
@@ -34,6 +42,10 @@ export const translations = {
     'drawer_promo': {
         'nl': 'Promo',
         'en': 'Promo',
+    },
+    'drawer_activities': {
+        'nl': 'Activiteiten',
+        'en': 'Activities',
     },
     'drawer_settings': {
         'nl': 'Instellingen',
@@ -62,6 +74,10 @@ export const translations = {
     'settings_language_en': {
         'nl': 'EN',
         'en': 'EN',
+    },
+    'activities_topic_change': {
+        'nl': 'Pas je topics aan',
+        'en': 'Edit your topics',
     }
 };
 
