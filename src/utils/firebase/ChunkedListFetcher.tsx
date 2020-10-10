@@ -95,13 +95,17 @@ export class FetcherHolder<T> {
     async load() {
         var fetcher = this.fetcher;
 
-        if (fetcher == null || fetcher.isAtEnd)
+        if (fetcher == null || fetcher.isAtEnd) {
+            this.callback(this.items);
             return;
+        }
         
         var newData = await fetcher.fetchNext();
         
-        if (this.fetcher !== fetcher)
+        if (this.fetcher !== fetcher) {
+            this.callback(this.items);
             return;
+        }
 
         if (newData !== null) {
             var convertedData = newData.map(doc => {
