@@ -1,5 +1,5 @@
-import Committee from "../../models/Committee";
-import Topic from "../../models/Topic";
+import Committee from "../../data/database/committees/model/Committee";
+import Topic from "../../data/database/topic/model/Topic";
 
 export const SET_TOPICS = "SET_TOPICS";
 export const UPDATE_TOPIC_SETTING = "UPDATE_TOPIC_SETTING";

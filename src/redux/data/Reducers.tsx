@@ -3,10 +3,10 @@ import AsyncStorage from "@react-native-community/async-storage";
 import { Store } from 'redux';
 import { DataActionTypes, setCommittees, setTopics, setTopicSettings, SET_COMMITTEES, SET_TOPICS, SET_TOPIC_SETTINGS, UPDATE_TOPIC_SETTING, } from './Actions';
 import firestore from '@react-native-firebase/firestore';
-import { DocumentSnapshot, QuerySnapshot } from "../../utils/TypeAliases";
-import Topic from "../../models/Topic";
-import Committee from "../../models/Committee";
+import { DocumentSnapshot, QuerySnapshot } from "../../data/database/utils/TypeAliases";
 import messaging from '@react-native-firebase/messaging';
+import mapTopics from "../../data/database/topic/mapper/TopicMapper";
+import mapCommittees from "../../data/database/committees/mapper/CommitteeMapper";
 
 const STORAGE_TOPIC_SETTINGS = "STORAGE_TOPIC_SETTINGS";
 
@@ -67,18 +67,16 @@ export function dataReducer(
 export function setupDataStore(store: Store) {
     // Topics 
     firestore().collection('topics')
-        .onSnapshot((snapshot: QuerySnapshot) => {
+        .onSnapshot(async (snapshot: QuerySnapshot) => {
             if (snapshot == null) return;
-            const topics = snapshot.docs.map((doc) => Topic.fromSnapshot(doc));
-            store.dispatch(setTopics(topics));
+            store.dispatch(setTopics(await mapTopics(snapshot)));
         });
     
     // Committees
     firestore().collection('committees')
-        .onSnapshot((snapshot: QuerySnapshot) => {
+        .onSnapshot(async (snapshot: QuerySnapshot) => {
             if (snapshot == null) return;
-            const committees = snapshot.docs.map((doc) => Committee.fromSnapshot(doc));
-            store.dispatch(setCommittees(committees));
+            store.dispatch(setCommittees(await mapCommittees(snapshot)));
         });
 
     // Topic Settings

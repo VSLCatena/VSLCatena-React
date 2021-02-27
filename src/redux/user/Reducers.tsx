@@ -3,12 +3,13 @@ import { updateUser, UpdateUserAction, UPDATE_USER } from './Actions';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import { Store } from "redux";
-import { DocumentSnapshot } from "../../utils/TypeAliases";
-import User from "../../models/User";
+import { DocumentSnapshot } from "../../data/database/utils/TypeAliases";
+import mapUser from "../../data/database/user/mapper/UserMapper";
+import Role from "../../data/database/user/model/Role";
 
 const initialState: UserState = {
-    currentUser: null,
-    userRole: 0,
+    currentUser: undefined,
+    userRole: Role.USER,
 }
 
 export function userReducer(
@@ -20,7 +21,7 @@ export function userReducer(
             return {
                 ...state,
                 currentUser: action.user,
-                userRole: action.user?.role ?? 0,
+                userRole: action.user?.role ?? Role.USER,
             }
         default:
             return state;
@@ -36,13 +37,13 @@ export function setupUserStore(store: Store) {
             unsubscriber();
 
         if (user == null) {
-            store.dispatch(updateUser(null))
+            store.dispatch(updateUser(undefined))
             return;
         }
 
         unsubscriber = firestore().doc('users/'+(user.uid))
-            .onSnapshot((snapshot: DocumentSnapshot) => {
-                store.dispatch(updateUser(User.fromSnapshot(snapshot)));
+            .onSnapshot(async (snapshot: DocumentSnapshot) => {
+                store.dispatch(updateUser(await mapUser(snapshot)));
             }); 
     });
 }

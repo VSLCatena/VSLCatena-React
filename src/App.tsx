@@ -1,13 +1,8 @@
 import { DarkTheme, DefaultTheme, NavigationContainer, } from '@react-navigation/native';
 import React from 'react';
-import LoginScreen from './screens/login/LoginScreen';
-import HomeScreen from './screens/home/HomeScreen';
 import auth from '@react-native-firebase/auth';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import DrawerContainer from './utils/DrawerContainer';
-import ProfileScreen from './screens/profile/ProfileScreen';
-import NewsScreen from './screens/news/NewsScreen';
-import SettingsScreen from './screens/settings/SettingsScreen';
 import { DefaultTheme as DefaultPaperTheme, DarkTheme as DarkPaperTheme, Provider as PaperProvider } from 'react-native-paper';
 import { Provider as StoreProvider, useSelector } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
@@ -16,14 +11,19 @@ import thunk from 'redux-thunk';
 import { setupDarkModeStore } from './redux/darkmode/Reducers';
 import { setupUserStore } from './redux/user/Reducers';
 import LanguageProvider from './utils/language/LanguageProvider';
-import EditNewsScreen from './screens/news/EditNewsScreen';
-import PromoScreen from './screens/promo/PromoScreen';
-import EditPromoScreen from './screens/promo/EditPromoScreen';
 import NfcHandler from './utils/NfcHandler';
 import { setupDataStore } from './redux/data/Reducers';
-import ActivitiesScreen from './screens/activities/ActivitiesScreen';
-import TopicsScreen from './screens/activities/TopicsScreen';
-import EditActivityScreen from './screens/activities/EditActivityScreen';
+import LoginScreen from './presentation/login/LoginScreen';
+import HomeScreen from './presentation/home/HomeScreen';
+import ProfileScreen from './presentation/profile/ProfileScreen';
+import NewsScreen from './presentation/news/NewsScreen';
+import EditNewsScreen from './presentation/news/EditNewsScreen';
+import PromoScreen from './presentation/promo/PromoScreen';
+import EditPromoScreen from './presentation/promo/EditPromoScreen';
+import ActivitiesScreen from './presentation/activities/ActivitiesScreen';
+import EditActivityScreen from './presentation/activities/EditActivityScreen';
+import TopicsScreen from './presentation/activities/TopicsScreen';
+import SettingsScreen from './presentation/settings/SettingsScreen';
 
 
 

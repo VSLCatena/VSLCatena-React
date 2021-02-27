@@ -1,5 +1,5 @@
 import { StackScreenProps } from "@react-navigation/stack";
-import User from "./models/User";
+import User from "./data/database/user/model/User";
 
 type NavigationParams = {
     Login: undefined,
