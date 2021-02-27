@@ -19,7 +19,7 @@ export default function PromoScreen({navigation}: StackScreenProps<NavigationPar
 
     return (
         <Scaffolding title={t('title_promo')}>
-            <PromoPagedList contentContainerStyle={{ paddingTop: 8, paddingBottom: isModerator ? 72 : 8 }} />
+            <PromoPagedList contentContainerStyle={{ paddingTop: 8, paddingBottom: isModerator ? 80 : 8 }} />
             <FAB
                 visible={isModerator}
                 style={styles.fab}

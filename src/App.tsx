@@ -24,6 +24,7 @@ import ActivitiesScreen from './presentation/activities/ActivitiesScreen';
 import EditActivityScreen from './presentation/activities/EditActivityScreen';
 import TopicsScreen from './presentation/activities/TopicsScreen';
 import SettingsScreen from './presentation/settings/SettingsScreen';
+import CommitteesScreen from './presentation/committees/CommitteesScreen';
 
 
 
@@ -79,6 +80,7 @@ const AppNav = () => {
             <Drawer.Screen name="EditActivity" component={EditActivityScreen} />
             <Drawer.Screen name="Topics" component={TopicsScreen} />
             <Drawer.Screen name="Settings" component={SettingsScreen} />
+            <Drawer.Screen name="Committees" component={CommitteesScreen} />
           </Drawer.Navigator>
         </NavigationContainer>
       </PaperProvider>

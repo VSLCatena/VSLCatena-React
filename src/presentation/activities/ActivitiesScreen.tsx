@@ -4,7 +4,6 @@ import NewsPagedList from '../news/components/NewsPagedList';
 import { StackScreenProps } from '@react-navigation/stack';
 import NavigationParams from '../../NavigationParams';
 import { StyleSheet, View } from 'react-native';
-import { useTheme } from '@react-navigation/native';
 import LocaleContext from '../../utils/language/LanguageContext';
 import { Appbar, Button, FAB } from 'react-native-paper';
 import { useSelector } from 'react-redux';
@@ -19,6 +18,7 @@ export default function ActivitiesScreen({navigation}: StackScreenProps<Navigati
     return (
         <Scaffolding title={t('title_activities')}>
             <ActivitiesPagedList 
+                contentContainerStyle={{ paddingTop: 8, paddingBottom: 80 }}
                 ListHeaderComponent={(
                     <Button 
                         mode='contained' 

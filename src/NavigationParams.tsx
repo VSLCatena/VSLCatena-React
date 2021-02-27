@@ -6,6 +6,7 @@ type NavigationParams = {
     Home: undefined,
     Profile: { user: User|undefined },
     News: undefined,
+    Committees: undefined,
     EditNews: { newsId: string|undefined },
     Promo: undefined,
     EditPromo: { promoId: string|undefined },

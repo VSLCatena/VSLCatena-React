@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import * as React from 'react';
+import { TextPropTypes } from 'react-native';
 import LocaleContext, { LocaleState } from './LanguageContext';
 import { SupportedLangs, translations, Translations } from './LanguageDefinition';
 
@@ -17,7 +18,13 @@ export default class LanguageProvider extends React.Component<{}, LocaleState> {
     }
 
     private translate(key: Translations, ...args: string[]): string {
-        return translations[key][this.state.lang];
+        var text = translations[key][this.state.lang];
+
+        args.forEach(function(arg) {
+            text = text.split("%s").join(arg);
+        });
+        
+        return text;
     }
     
     private setLang(lang: SupportedLangs) {

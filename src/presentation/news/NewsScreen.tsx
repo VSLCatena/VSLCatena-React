@@ -18,7 +18,7 @@ export default function NewsScreen({navigation}: StackScreenProps<NavigationPara
 
     return (
         <Scaffolding title={t('title_news')}>
-            <NewsPagedList contentContainerStyle={{ paddingTop: 8, paddingBottom: isModerator ? 72 : 8 }} />
+            <NewsPagedList contentContainerStyle={{ paddingTop: 8, paddingBottom: isModerator ? 80 : 8 }} />
             <FAB
                 visible={userRole.isAtLeast(Role.MODERATOR)}
                 style={styles.fab}

@@ -19,6 +19,10 @@ export const translations = {
         'nl': 'Profiel van %s',
         'en': 'Profile of %s',
     },
+    'title_committees': {
+        'nl': 'Commissies',
+        'en': 'Committees',
+    },
     'title_settings': {
         'nl': 'Instellingen',
         'en': 'Settings',
@@ -42,6 +46,10 @@ export const translations = {
     'drawer_promo': {
         'nl': 'Promo',
         'en': 'Promo',
+    },
+    'drawer_committees': {
+        'nl': 'Commissies',
+        'en': 'Committees',
     },
     'drawer_activities': {
         'nl': 'Activiteiten',

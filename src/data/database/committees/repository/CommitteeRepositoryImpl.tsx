@@ -5,7 +5,9 @@ import mapper from "../mapper/CommitteeMapper"
 
 class CommitteeRepositoryImpl implements CommitteeRepository {
     async getCommittees(): Promise<Committee[]> {
-        let docs = await firestore().collection("committees").get();
+        let docs = await firestore().collection("committees")
+            .orderBy('name')
+            .get();
         return mapper(docs);
     }
 }

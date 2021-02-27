@@ -6,7 +6,7 @@ import GetImageDownloadUrl from '../../data/database/image/usecase/GetImageDownl
 import PromoScreen from '../promo/PromoScreen';
 
 export interface Props {
-    reference: string,
+    reference?: string,
     placeholder?: ImageSourcePropType,
     style: StyleProp<ImageStyle>,
 }
@@ -17,7 +17,9 @@ const StorageImage: React.FC<Props> = (props) => {
     var [image,setImage] = useState<string|null>(null);
 
     useEffect(() => {
-        GetImageDownloadUrl(props.reference)
+        let reference = props.reference;
+        if (reference == null) return;
+        GetImageDownloadUrl(reference)
             .then((url) => {
                 if (url != null)
                     setImage(url);
