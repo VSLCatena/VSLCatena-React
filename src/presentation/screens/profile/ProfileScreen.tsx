@@ -25,28 +25,26 @@ export default function ProfileScreen({navigation, route}: StackScreenProps<Navi
 
     return (
         <Scaffolding title={t('title_profile', user.name)}>
-            <ScrollView nestedScrollEnabled>
-                <View style={{ padding: 20, flexDirection: 'row' }}>
-                    <StorageImage reference={user?.getImageReference()} style={{ width: 150, height: 150, borderRadius: 20 }} />
-                    <View style={{ paddingStart: 16 }}>
-                        <Text style={{ fontSize: 24, fontWeight: 'bold' }}>{user.name}</Text>
-                        <Text>Maybe last online</Text>
-                        <Text>Maybe joined since</Text>
+            <FlatList
+                contentContainerStyle={{ padding: 16 }}
+                data={ user.committees }
+                ListHeaderComponent={
+                    <View>
+                        <View style={{ flexDirection: 'row', paddingBottom: 16 }}>
+                            <StorageImage reference={user?.getImageReference()} style={{ width: 150, height: 150, borderRadius: 20 }} />
+                            <View style={{ paddingStart: 16 }}>
+                                <Text style={{ fontSize: 24, fontWeight: 'bold' }}>{user.name}</Text>
+                                <Text>Maybe last online</Text>
+                                <Text>Maybe joined since</Text>
+                            </View>
+                        </View>
+                        { ((user.committees.length > 0) ? (<Text style={{ fontSize: 24, fontWeight: 'bold', marginTop: 16, marginBottom: 8 }}>{t('title_committees')}</Text>) : null) }
                     </View>
-                </View>
-                { user.committees.length > 0 ? (
-                    <View style={{ padding: 20 }}>
-                        <Text style={{ fontSize: 24, fontWeight: 'bold' }}>{t('title_committees')}</Text>
-                        <FlatList
-                            style={{ marginTop: 8 }}
-                            data={ user.committees }
-                            renderItem={(item) => 
-                                <View style={{ marginTop: 8, marginBottom: 8, }}>
-                                    <CommitteeComponent {...item.item} />
-                                </View> } />
-                    </View>
-                ) : null }
-            </ScrollView>
+                }
+                renderItem={(item) => 
+                    <View style={{ marginTop: 8, marginBottom: 8, }}>
+                        <CommitteeComponent {...item.item} />
+                    </View> } />
         </Scaffolding>
     )
 };

@@ -14,7 +14,7 @@ const CommitteeComponent: React.FC<Committee> = (props) => {
             <Card.Content style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <View style={{ backgroundColor: colors.primary, width: 20, height: 20, borderRadius: 10 }} />
                 <View style={{flexDirection: 'column', padding: 8, marginStart: 16 }}>
-                    <Text style={{ fontSize: 16 }}>{props.name}</Text>
+                    <Text style={{ fontSize: 16, fontWeight: 'bold' }}>{props.name}</Text>
                     { props.email ? <Text>{props.email}</Text> : null }
                 </View>
             </Card.Content>
