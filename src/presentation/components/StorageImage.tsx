@@ -1,9 +1,7 @@
 import * as React from 'react';
-import storage from '@react-native-firebase/storage';
 import { useEffect, useState } from "react";
 import { Image, ImageSourcePropType, ImageStyle, StyleProp } from 'react-native';
 import GetImageDownloadUrl from '../../data/database/image/usecase/GetImageDownloadUrl';
-import PromoScreen from '../promo/PromoScreen';
 
 export interface Props {
     reference?: string,

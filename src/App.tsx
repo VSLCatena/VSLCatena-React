@@ -2,29 +2,29 @@ import { DarkTheme, DefaultTheme, NavigationContainer, } from '@react-navigation
 import React from 'react';
 import auth from '@react-native-firebase/auth';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import DrawerContainer from './utils/DrawerContainer';
+import DrawerContainer from './presentation/components/DrawerContainer';
 import { DefaultTheme as DefaultPaperTheme, DarkTheme as DarkPaperTheme, Provider as PaperProvider } from 'react-native-paper';
 import { Provider as StoreProvider, useSelector } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
-import { rootReducer, RootState } from './redux/Combiner';
+import { rootReducer, RootState } from './data/redux/Combiner';
 import thunk from 'redux-thunk';
-import { setupDarkModeStore } from './redux/darkmode/Reducers';
-import { setupUserStore } from './redux/user/Reducers';
-import LanguageProvider from './utils/language/LanguageProvider';
-import NfcHandler from './utils/NfcHandler';
-import { setupDataStore } from './redux/data/Reducers';
-import LoginScreen from './presentation/login/LoginScreen';
-import HomeScreen from './presentation/home/HomeScreen';
-import ProfileScreen from './presentation/profile/ProfileScreen';
-import NewsScreen from './presentation/news/NewsScreen';
-import EditNewsScreen from './presentation/news/EditNewsScreen';
-import PromoScreen from './presentation/promo/PromoScreen';
-import EditPromoScreen from './presentation/promo/EditPromoScreen';
-import ActivitiesScreen from './presentation/activities/ActivitiesScreen';
-import EditActivityScreen from './presentation/activities/EditActivityScreen';
-import TopicsScreen from './presentation/activities/TopicsScreen';
-import SettingsScreen from './presentation/settings/SettingsScreen';
-import CommitteesScreen from './presentation/committees/CommitteesScreen';
+import { setupDarkModeStore } from './data/redux/darkmode/Reducers';
+import { setupUserStore } from './data/redux/user/Reducers';
+import NfcHandler from './features/nfc/NfcHandler';
+import { setupDataStore } from './data/redux/data/Reducers';
+import LoginScreen from './presentation/screens/login/LoginScreen';
+import HomeScreen from './presentation/screens/home/HomeScreen';
+import ProfileScreen from './presentation/screens/profile/ProfileScreen';
+import NewsScreen from './presentation/screens/news/NewsScreen';
+import EditNewsScreen from './presentation/screens/news/EditNewsScreen';
+import PromoScreen from './presentation/screens/promo/PromoScreen';
+import EditPromoScreen from './presentation/screens/promo/EditPromoScreen';
+import ActivitiesScreen from './presentation/screens/activities/ActivitiesScreen';
+import EditActivityScreen from './presentation/screens/activities/EditActivityScreen';
+import TopicsScreen from './presentation/screens/activities/TopicsScreen';
+import SettingsScreen from './presentation/screens/settings/SettingsScreen';
+import CommitteesScreen from './presentation/screens/committees/CommitteesScreen';
+import LanguageProvider from './presentation/language/LanguageProvider';
 
 
 
