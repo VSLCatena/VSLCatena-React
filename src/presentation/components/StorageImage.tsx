@@ -20,7 +20,7 @@ const StorageImage: React.FC<Props & Omit<FastImageProps, 'source'>> = (props) =
                 if (url != null)
                     setSource({uri: url});
             }).catch(() => {});
-    });
+    }, [props.reference]);
 
     return (<FastImage {...props} source={source} />);
 };
