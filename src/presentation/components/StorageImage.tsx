@@ -1,40 +1,28 @@
 import * as React from 'react';
 import { useEffect, useState } from "react";
-import { Image, ImageSourcePropType, ImageStyle, StyleProp } from 'react-native';
+import { ImageSourcePropType } from 'react-native';
+import FastImage, { FastImageProps, Source } from 'react-native-fast-image';
 import GetImageDownloadUrl from '../../data/database/image/usecase/GetImageDownloadUrl';
 
 export interface Props {
     reference?: string,
     placeholder?: ImageSourcePropType,
-    style: StyleProp<ImageStyle>,
 }
 
 const placeholder = require('../../assets/images/logo.png');
 
-const StorageImage: React.FC<Props> = (props) => {
-    var [image,setImage] = useState<string|null>(null);
+const StorageImage: React.FC<Props & Omit<FastImageProps, 'source'>> = (props) => {
+    var [source,setSource] = useState<Source>(props?.placeholder ?? placeholder);
 
     useEffect(() => {
-        let reference = props.reference;
-        if (reference == null) return;
-        GetImageDownloadUrl(reference)
+        GetImageDownloadUrl(props.reference ?? "")
             .then((url) => {
                 if (url != null)
-                    setImage(url);
-            }).catch((e) => {});
+                    setSource({uri: url});
+            }).catch(() => {});
     });
 
-    var imageSource: Object|null = null;
-    if (image != null) {
-        imageSource = {
-            uri: image,
-            method: 'GET',
-        };
-    }
-
-    // We switch between 3 sources, if the image can be loaded we load that, otherwise we
-    // load a placeholder, otherwise we load an empty object
-    return (<Image source={imageSource ?? props?.placeholder ?? placeholder} style={props.style} />);
+    return (<FastImage {...props} source={source} />);
 };
 
 export default StorageImage;

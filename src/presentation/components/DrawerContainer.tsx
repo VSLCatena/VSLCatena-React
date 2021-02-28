@@ -15,7 +15,6 @@ interface Props extends DrawerContentComponentProps<any> {
 }
 
 export default function DrawerContainer(props: DrawerContentComponentProps<any>) {
-    const dispatcher = useDispatch();
     const currentUser = useSelector((state: RootState) => state.user).currentUser;
     const {t} = React.useContext(LocaleContext);
 
