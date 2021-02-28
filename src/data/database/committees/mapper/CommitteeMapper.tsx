@@ -11,5 +11,9 @@ export function mapCommittee(snapshot: DocumentSnapshot): Committee {
 }
 
 export default function mapCommittees(snapshot: QuerySnapshot): Committee[] {
-    return snapshot.docs.map(item => mapCommittee(item));
+    let committees = snapshot.docs.map(item => mapCommittee(item));
+    
+    committees = committees.sort((a, b) => { return a.name.toLowerCase().localeCompare(b.name.toLowerCase()) });
+
+    return committees;
 }
